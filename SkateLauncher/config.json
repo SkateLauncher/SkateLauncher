@@ -1,0 +1,14 @@
+{
+	"game": {
+		"path": "",
+		"launchargs": "",
+		"servers": [
+
+		],
+		"use_vulkan": false,
+		"disable_watermark": true,
+		"online": {
+			"username": "user"
+		}
+	}
+}
