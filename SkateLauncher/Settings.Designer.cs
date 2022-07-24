@@ -33,17 +33,25 @@
             this.Discord = new System.Windows.Forms.CheckBox();
             this.ShowServer = new System.Windows.Forms.CheckBox();
             this.ServerListSettings = new System.Windows.Forms.GroupBox();
+            this.UseProxy = new System.Windows.Forms.CheckBox();
             this.ClearServers = new System.Windows.Forms.Button();
             this.AddServer = new System.Windows.Forms.Button();
             this.ServerHost = new System.Windows.Forms.TextBox();
             this.GameSettings = new System.Windows.Forms.GroupBox();
-            this.UseProxy = new System.Windows.Forms.CheckBox();
+            this.AiSkatersTooltip = new System.Windows.Forms.Label();
+            this.AiSkaters = new System.Windows.Forms.NumericUpDown();
+            this.DisableTutorial = new System.Windows.Forms.CheckBox();
+            this.Shirtless = new System.Windows.Forms.CheckBox();
+            this.Fullscreen = new System.Windows.Forms.CheckBox();
             this.DebugRender = new System.Windows.Forms.CheckBox();
             this.ForceDX11 = new System.Windows.Forms.CheckBox();
             this.UseVulkan = new System.Windows.Forms.CheckBox();
+            this.CosmeticsBuildKit = new System.Windows.Forms.CheckBox();
+            this.DisableWatermark = new System.Windows.Forms.CheckBox();
             this.DiscordSettings.SuspendLayout();
             this.ServerListSettings.SuspendLayout();
             this.GameSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AiSkaters)).BeginInit();
             this.SuspendLayout();
             // 
             // DiscordSettings
@@ -53,9 +61,9 @@
             this.DiscordSettings.AutoSize = true;
             this.DiscordSettings.Controls.Add(this.Discord);
             this.DiscordSettings.Controls.Add(this.ShowServer);
-            this.DiscordSettings.Location = new System.Drawing.Point(12, 261);
+            this.DiscordSettings.Location = new System.Drawing.Point(12, 311);
             this.DiscordSettings.Name = "DiscordSettings";
-            this.DiscordSettings.Size = new System.Drawing.Size(251, 88);
+            this.DiscordSettings.Size = new System.Drawing.Size(410, 88);
             this.DiscordSettings.TabIndex = 0;
             this.DiscordSettings.TabStop = false;
             this.DiscordSettings.Text = "Discord RPC";
@@ -85,15 +93,27 @@
             this.ServerListSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ServerListSettings.AutoSize = true;
+            this.ServerListSettings.Controls.Add(this.UseProxy);
             this.ServerListSettings.Controls.Add(this.ClearServers);
             this.ServerListSettings.Controls.Add(this.AddServer);
             this.ServerListSettings.Controls.Add(this.ServerHost);
-            this.ServerListSettings.Location = new System.Drawing.Point(12, 159);
+            this.ServerListSettings.Location = new System.Drawing.Point(12, 184);
             this.ServerListSettings.Name = "ServerListSettings";
-            this.ServerListSettings.Size = new System.Drawing.Size(251, 96);
+            this.ServerListSettings.Size = new System.Drawing.Size(410, 121);
             this.ServerListSettings.TabIndex = 1;
             this.ServerListSettings.TabStop = false;
             this.ServerListSettings.Text = "Servers";
+            // 
+            // UseProxy
+            // 
+            this.UseProxy.AutoSize = true;
+            this.UseProxy.Location = new System.Drawing.Point(6, 80);
+            this.UseProxy.Name = "UseProxy";
+            this.UseProxy.Size = new System.Drawing.Size(168, 19);
+            this.UseProxy.TabIndex = 3;
+            this.UseProxy.Text = "Use Proxy for Server [BETA]";
+            this.UseProxy.UseVisualStyleBackColor = true;
+            this.UseProxy.Visible = false;
             // 
             // ClearServers
             // 
@@ -128,36 +148,77 @@
             this.GameSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GameSettings.AutoSize = true;
-            this.GameSettings.Controls.Add(this.UseProxy);
+            this.GameSettings.Controls.Add(this.DisableWatermark);
+            this.GameSettings.Controls.Add(this.CosmeticsBuildKit);
+            this.GameSettings.Controls.Add(this.AiSkatersTooltip);
+            this.GameSettings.Controls.Add(this.AiSkaters);
+            this.GameSettings.Controls.Add(this.DisableTutorial);
+            this.GameSettings.Controls.Add(this.Shirtless);
+            this.GameSettings.Controls.Add(this.Fullscreen);
             this.GameSettings.Controls.Add(this.DebugRender);
             this.GameSettings.Controls.Add(this.ForceDX11);
             this.GameSettings.Controls.Add(this.UseVulkan);
             this.GameSettings.Location = new System.Drawing.Point(12, 12);
             this.GameSettings.Name = "GameSettings";
-            this.GameSettings.Size = new System.Drawing.Size(245, 141);
+            this.GameSettings.Size = new System.Drawing.Size(404, 166);
             this.GameSettings.TabIndex = 2;
             this.GameSettings.TabStop = false;
             this.GameSettings.Text = "Game";
             // 
-            // UseProxy
+            // AiSkatersTooltip
             // 
-            this.UseProxy.AutoSize = true;
-            this.UseProxy.Location = new System.Drawing.Point(6, 97);
-            this.UseProxy.Name = "UseProxy";
-            this.UseProxy.Size = new System.Drawing.Size(168, 19);
-            this.UseProxy.TabIndex = 3;
-            this.UseProxy.Text = "Use Proxy for Server [BETA]";
-            this.UseProxy.UseVisualStyleBackColor = true;
-            this.UseProxy.Visible = false;
+            this.AiSkatersTooltip.AutoSize = true;
+            this.AiSkatersTooltip.Location = new System.Drawing.Point(162, 73);
+            this.AiSkatersTooltip.Name = "AiSkatersTooltip";
+            this.AiSkatersTooltip.Size = new System.Drawing.Size(119, 15);
+            this.AiSkatersTooltip.TabIndex = 8;
+            this.AiSkatersTooltip.Text = "Number of AI Skaters";
+            // 
+            // AiSkaters
+            // 
+            this.AiSkaters.Location = new System.Drawing.Point(162, 91);
+            this.AiSkaters.Name = "AiSkaters";
+            this.AiSkaters.Size = new System.Drawing.Size(80, 23);
+            this.AiSkaters.TabIndex = 7;
+            // 
+            // DisableTutorial
+            // 
+            this.DisableTutorial.AutoSize = true;
+            this.DisableTutorial.Location = new System.Drawing.Point(162, 122);
+            this.DisableTutorial.Name = "DisableTutorial";
+            this.DisableTutorial.Size = new System.Drawing.Size(107, 19);
+            this.DisableTutorial.TabIndex = 6;
+            this.DisableTutorial.Text = "Disable Tutorial";
+            this.DisableTutorial.UseVisualStyleBackColor = true;
+            // 
+            // Shirtless
+            // 
+            this.Shirtless.AutoSize = true;
+            this.Shirtless.Location = new System.Drawing.Point(162, 47);
+            this.Shirtless.Name = "Shirtless";
+            this.Shirtless.Size = new System.Drawing.Size(69, 19);
+            this.Shirtless.TabIndex = 5;
+            this.Shirtless.Text = "Shirtless";
+            this.Shirtless.UseVisualStyleBackColor = true;
+            // 
+            // Fullscreen
+            // 
+            this.Fullscreen.AutoSize = true;
+            this.Fullscreen.Location = new System.Drawing.Point(6, 97);
+            this.Fullscreen.Name = "Fullscreen";
+            this.Fullscreen.Size = new System.Drawing.Size(79, 19);
+            this.Fullscreen.TabIndex = 3;
+            this.Fullscreen.Text = "Fullscreen";
+            this.Fullscreen.UseVisualStyleBackColor = true;
             // 
             // DebugRender
             // 
             this.DebugRender.AutoSize = true;
             this.DebugRender.Location = new System.Drawing.Point(6, 72);
             this.DebugRender.Name = "DebugRender";
-            this.DebugRender.Size = new System.Drawing.Size(156, 19);
+            this.DebugRender.Size = new System.Drawing.Size(99, 19);
             this.DebugRender.TabIndex = 2;
-            this.DebugRender.Text = "Enable Debug Rendering";
+            this.DebugRender.Text = "Enable Debug";
             this.DebugRender.UseVisualStyleBackColor = true;
             // 
             // ForceDX11
@@ -184,11 +245,35 @@
             this.UseVulkan.Text = "Use Vulkan";
             this.UseVulkan.UseVisualStyleBackColor = true;
             // 
+            // CosmeticsBuildKit
+            // 
+            this.CosmeticsBuildKit.AutoSize = true;
+            this.CosmeticsBuildKit.Checked = true;
+            this.CosmeticsBuildKit.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CosmeticsBuildKit.Location = new System.Drawing.Point(162, 22);
+            this.CosmeticsBuildKit.Name = "CosmeticsBuildKit";
+            this.CosmeticsBuildKit.Size = new System.Drawing.Size(177, 19);
+            this.CosmeticsBuildKit.TabIndex = 9;
+            this.CosmeticsBuildKit.Text = "Enable Cosmetics + Build Kit";
+            this.CosmeticsBuildKit.UseVisualStyleBackColor = true;
+            // 
+            // DisableWatermark
+            // 
+            this.DisableWatermark.AutoSize = true;
+            this.DisableWatermark.Checked = true;
+            this.DisableWatermark.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.DisableWatermark.Location = new System.Drawing.Point(6, 122);
+            this.DisableWatermark.Name = "DisableWatermark";
+            this.DisableWatermark.Size = new System.Drawing.Size(125, 19);
+            this.DisableWatermark.TabIndex = 10;
+            this.DisableWatermark.Text = "Disable Watermark";
+            this.DisableWatermark.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(275, 361);
+            this.ClientSize = new System.Drawing.Size(434, 411);
             this.Controls.Add(this.GameSettings);
             this.Controls.Add(this.ServerListSettings);
             this.Controls.Add(this.DiscordSettings);
@@ -202,6 +287,7 @@
             this.ServerListSettings.PerformLayout();
             this.GameSettings.ResumeLayout(false);
             this.GameSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AiSkaters)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,5 +307,12 @@
         private CheckBox DebugRender;
         private CheckBox ForceDX11;
         private CheckBox UseProxy;
+        private CheckBox Fullscreen;
+        private CheckBox Shirtless;
+        private Label AiSkatersTooltip;
+        private NumericUpDown AiSkaters;
+        private CheckBox DisableTutorial;
+        private CheckBox CosmeticsBuildKit;
+        private CheckBox DisableWatermark;
     }
 }

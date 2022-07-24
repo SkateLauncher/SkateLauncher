@@ -64,8 +64,6 @@ namespace SkateLauncher
             Username.Text = Properties.launcher.Default.Username;
             AddLaunchArgs.Text = Properties.launcher.Default.LaunchArgs;
 
-            Cosmetics.Checked = Properties.launcher.Default.Cosmetics;
-
             SavedServers = Properties.launcher.Default.Servers.Split(',').ToList();
 
             SelectedServerList.SelectedIndex = 0;
@@ -255,36 +253,26 @@ namespace SkateLauncher
 
             String LaunchArgs = "";
 
-            if (Watermark.Checked)
-            {
-                LaunchArgs += "-DelMarUI.EnableWatermark false ";
-            }
+            if (Properties.settings.Default.DisableWatermark) LaunchArgs += "-DelMarUI.EnableWatermark False ";
 
-            if (Properties.settings.Default.UseVulkan)
-            {
-                LaunchArgs += "-thinclient 0 -Render.Rc2BridgeEnable 1 -Rc2Bridge. DeviceBackend Rc2BridgeBackend_Vulkan -RenderDevice. RenderCore2Enable 1 ";
-            }
+            if (Properties.settings.Default.UseVulkan) LaunchArgs += "-thinclient 0 -Render.Rc2BridgeEnable 1 -Rc2Bridge. DeviceBackend Rc2BridgeBackend_Vulkan -RenderDevice. RenderCore2Enable 1 ";
 
-            if (Properties.settings.Default.ForceDirectX11)
-            {
-                LaunchArgs += "-Render.ForceDx11 true ";
+            if (Properties.settings.Default.ForceDirectX11) LaunchArgs += "-Render.ForceDx11 False ";
 
-            }
+            if (Properties.settings.Default.DebugRender) LaunchArgs += "-DebugRender True ";
 
-            if (Properties.settings.Default.DebugRender)
-            {
-                LaunchArgs += "-DebugRender True";
-            }
+            if (Properties.settings.Default.Fullscreen) LaunchArgs += "-ProfileOptions.ForceDefaultFullscreenEnabled true ";
 
-            if (Cosmetics.Checked)
-            {
-                LaunchArgs += "-ItemManager.ForceOwnAll true ";
-            }
+            if (Properties.settings.Default.Shirtless) LaunchArgs += "-ClothSystem.ClientClothWorldThreadCount 0 ";
+
+            if (Properties.settings.Default.DisableTutorial) LaunchArgs += "-Onboarding.Enabled false ";
+
+            if (Properties.settings.Default.CosmeticsBuildKit) LaunchArgs += "-ItemManager.ForceOwnAll True -Architect.ShowAllCategories ";
+
+            LaunchArgs += "-aiSpawnSystem.NumAISkaters " + Properties.settings.Default.AiSkaters + " ";
 
             if (Online.Checked)
             {
-                LaunchArgs += "-DelMarOnline.Enable false -DelMar.LocalPlayerDebugName \"" + Username.Text.ToString() + "\" ";
-
                 String Host = Address.Text;
 
                 if (!PingHost(Host, 25200))
@@ -293,7 +281,7 @@ namespace SkateLauncher
                     return;
                 }
 
-                LaunchArgs += "-Online.ClientIsPresenceEnabled false -Client.ServerIp " + Host + ":25200";
+                LaunchArgs += "-DelMarOnline.Enable False -DelMar.LocalPlayerDebugName \"" + Username.Text.ToString() + "\" -Online.ClientIsPresenceEnabled False -Client.ServerIp " + Host + ":25200";
 
                 if (SkateOnlineServers.Contains(Host))
                 {
@@ -313,7 +301,7 @@ namespace SkateLauncher
             }
             else
             {
-                LaunchArgs += "-Online.ClientIsPresenceEnabled false -DelMarOnline.Enable false";
+                LaunchArgs += "-Online.ClientIsPresenceEnabled False -DelMarOnline.Enable False";
                 UpdatePresence("Playing Offline", "", true);
             }
 
@@ -326,7 +314,7 @@ namespace SkateLauncher
 
         private void Launch_Server(object sender, EventArgs e)
         {
-            Process server = Process.Start(GamePath.Text.ToString(), "-DelMarOnline.Enable false -server");
+            Process server = Process.Start(GamePath.Text.ToString(), "-Online.ClientIsPresenceEnabled false -DelMarJobManager.Enable -server");
 
             if (Properties.settings.Default.UseProxy)
             {
@@ -366,11 +354,6 @@ namespace SkateLauncher
         private void SelectedServerList_Changed(object sender, EventArgs e)
         {
             RefreshServers(SelectedServerList.SelectedIndex);
-        }
-
-        private void Cosmetics_Changed(object sender, EventArgs e)
-        {
-            Properties.launcher.Default.Cosmetics = Cosmetics.Checked;
         }
     }
 }

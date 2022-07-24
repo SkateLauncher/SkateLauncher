@@ -61,18 +61,6 @@ namespace SkateLauncher.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int RenderingEngine {
-            get {
-                return ((int)(this["RenderingEngine"]));
-            }
-            set {
-                this["RenderingEngine"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Servers {
             get {
@@ -80,18 +68,6 @@ namespace SkateLauncher.Properties {
             }
             set {
                 this["Servers"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool Cosmetics {
-            get {
-                return ((bool)(this["Cosmetics"]));
-            }
-            set {
-                this["Cosmetics"] = value;
             }
         }
     }

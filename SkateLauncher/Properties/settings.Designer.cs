@@ -94,5 +94,77 @@ namespace SkateLauncher.Properties {
                 this["UseProxy"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Fullscreen {
+            get {
+                return ((bool)(this["Fullscreen"]));
+            }
+            set {
+                this["Fullscreen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Shirtless {
+            get {
+                return ((bool)(this["Shirtless"]));
+            }
+            set {
+                this["Shirtless"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DisableTutorial {
+            get {
+                return ((bool)(this["DisableTutorial"]));
+            }
+            set {
+                this["DisableTutorial"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int AiSkaters {
+            get {
+                return ((int)(this["AiSkaters"]));
+            }
+            set {
+                this["AiSkaters"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CosmeticsBuildKit {
+            get {
+                return ((bool)(this["CosmeticsBuildKit"]));
+            }
+            set {
+                this["CosmeticsBuildKit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DisableWatermark {
+            get {
+                return ((bool)(this["DisableWatermark"]));
+            }
+            set {
+                this["DisableWatermark"] = value;
+            }
+        }
     }
 }
