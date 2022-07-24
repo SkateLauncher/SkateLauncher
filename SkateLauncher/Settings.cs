@@ -24,16 +24,11 @@ namespace SkateLauncher
         {
             Discord.Checked = Properties.settings.Default.Discord;
             ShowServer.Checked = Properties.settings.Default.ShowServer;
-        }
 
-        private void Discord_Changed(object sender, EventArgs e)
-        {
-            Properties.settings.Default.Discord = Discord.Checked;
-        }
-
-        private void ShowServer_Changed(object sender, EventArgs e)
-        {
-            Properties.settings.Default.ShowServer = ShowServer.Checked;
+            UseVulkan.Checked = Properties.settings.Default.UseVulkan;
+            ForceDX11.Checked = Properties.settings.Default.ForceDirectX11;
+            DebugRender.Checked = Properties.settings.Default.DebugRender;
+            UseProxy.Checked = Properties.settings.Default.UseProxy;
         }
 
         private void AddServer_Clicked(object sender, EventArgs e)
@@ -45,6 +40,17 @@ namespace SkateLauncher
         private void ClearServers_Clicked(object sender, EventArgs e)
         {
             Launcher.SavedServers.Clear();
+        }
+
+        private void SaveSettings(object sender, FormClosingEventArgs e)
+        {
+            Properties.settings.Default.Discord = Discord.Checked;
+            Properties.settings.Default.ShowServer = ShowServer.Checked;
+
+            Properties.settings.Default.UseVulkan = UseVulkan.Checked;
+            Properties.settings.Default.ForceDirectX11 = ForceDX11.Checked;
+            Properties.settings.Default.DebugRender = DebugRender.Checked;
+            Properties.settings.Default.UseProxy = UseProxy.Checked;
         }
     }
 }

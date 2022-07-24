@@ -15,12 +15,16 @@ using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Windows;
 
+using BlueDwarf.Net.Proxy.Client;
+
 using DiscordRPC;
 
 namespace SkateLauncher
 {
     public partial class Launcher : Form
     {
+        public static String CurrentVersion = "1.0.0-beta.2";
+
         public static DiscordRpcClient client;
         public static bool ClientInitialized = false;
 
@@ -44,6 +48,8 @@ namespace SkateLauncher
 
         public Launcher()
         {
+            CheckForUpdates();
+
             InitializeComponent();
 
             LoadSettings();
@@ -61,8 +67,6 @@ namespace SkateLauncher
             Cosmetics.Checked = Properties.launcher.Default.Cosmetics;
 
             SavedServers = Properties.launcher.Default.Servers.Split(',').ToList();
-
-            RenderingEngine.SelectedIndex = Properties.launcher.Default.RenderingEngine;
 
             SelectedServerList.SelectedIndex = 0;
         }
@@ -197,6 +201,40 @@ namespace SkateLauncher
             }
         }
 
+        async private void CheckForUpdates()
+        {
+            try
+            {
+                var client = new HttpClient();
+                client.Timeout = TimeSpan.FromSeconds(1);
+                var req = client.GetAsync("https://skatelauncher.com/data/version.txt");
+
+                String res = req.Result.Content.ReadAsStringAsync().Result;
+
+                if (CurrentVersion != res)
+                {
+                    var updateWindow = MessageBox.Show("There is a new version of SkateLauncher available (" + res + ") Would you like to update?", "New Version", MessageBoxButtons.YesNo);
+                    if (updateWindow == DialogResult.Yes)
+                    {
+                        string target = "https://skatelauncher.com/download";
+
+                        var ps = new ProcessStartInfo(target)
+                        {
+                            UseShellExecute = true,
+                            Verb = "open"
+                        };
+                        Process.Start(ps);
+
+                        Environment.Exit(0);
+                    }
+                }
+            }
+            catch
+            {
+                return;
+            }
+        }
+
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             RefreshServers(SelectedServerList.SelectedIndex);
@@ -222,14 +260,20 @@ namespace SkateLauncher
                 LaunchArgs += "-DelMarUI.EnableWatermark false ";
             }
 
-            if (RenderingEngine.SelectedIndex == 1)
+            if (Properties.settings.Default.UseVulkan)
             {
                 LaunchArgs += "-thinclient 0 -Render.Rc2BridgeEnable 1 -Rc2Bridge. DeviceBackend Rc2BridgeBackend_Vulkan -RenderDevice. RenderCore2Enable 1 ";
             }
-            else if (RenderingEngine.SelectedIndex == 2)
+
+            if (Properties.settings.Default.ForceDirectX11)
             {
                 LaunchArgs += "-Render.ForceDx11 true ";
 
+            }
+
+            if (Properties.settings.Default.DebugRender)
+            {
+                LaunchArgs += "-DebugRender True";
             }
 
             if (Cosmetics.Checked)
@@ -275,36 +319,19 @@ namespace SkateLauncher
 
             LaunchArgs += " " + AddLaunchArgs.Text;
 
-            LaunchButton.Text = "Game Running...";
-            LaunchButton.Enabled = false;
-
             Process game = Process.Start(GamePath.Text.ToString(), LaunchArgs);
-            game.Exited += new EventHandler(GameClosed);
-        }
-
-        private void GameClosed(object sender, System.EventArgs e)
-        {
-            LaunchButton.Text = "Launch Game";
-            LaunchButton.Enabled = true;
-
+            game.WaitForExit();
             UpdatePresence("In the Launcher", "");
-        }
-
-        private void ServerClosed(object sender, System.EventArgs e)
-        {
-            LaunchServer.Text = "Launch Server";
-            LaunchServer.Enabled = true;
         }
 
         private void Launch_Server(object sender, EventArgs e)
         {
-            LaunchServer.Text = "Server Running...";
-            LaunchServer.Enabled = false;
-
             Process server = Process.Start(GamePath.Text.ToString(), "-DelMarOnline.Enable false -server");
-            server.Exited += new EventHandler(GameClosed);
 
-            Debug.WriteLine(server);
+            if (Properties.settings.Default.UseProxy)
+            {
+                
+            }
         }
 
         private void Online_Changed(object sender, EventArgs e)
@@ -321,11 +348,6 @@ namespace SkateLauncher
         private void Username_Changed(object sender, EventArgs e)
         {
             Properties.launcher.Default.Username = Username.Text.ToString();
-        }
-
-        private void UseVulkan_Changed(object sender, EventArgs e)
-        {
-            Properties.launcher.Default.RenderingEngine = RenderingEngine.SelectedIndex;
         }
 
         private void Launcher_Closing(object sender, FormClosingEventArgs e)

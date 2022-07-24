@@ -42,14 +42,12 @@
             this.GamePath = new System.Windows.Forms.TextBox();
             this.AddLaunchArgs = new System.Windows.Forms.TextBox();
             this.Online = new System.Windows.Forms.CheckBox();
-            this.RenderingEngine = new System.Windows.Forms.ComboBox();
             this.SelectedServerList = new System.Windows.Forms.ComboBox();
             this.LaunchServer = new System.Windows.Forms.Button();
             this.LaunchOptionsGroup = new System.Windows.Forms.GroupBox();
             this.Cosmetics = new System.Windows.Forms.CheckBox();
             this.OnlineOptionsGroup = new System.Windows.Forms.GroupBox();
             this.SettingsButton = new System.Windows.Forms.Button();
-            this.SkateOnlineDiscord = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             this.LaunchOptionsGroup.SuspendLayout();
             this.OnlineOptionsGroup.SuspendLayout();
@@ -74,7 +72,7 @@
             this.LaunchButton.BackColor = System.Drawing.SystemColors.Window;
             this.LaunchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.LaunchButton.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.LaunchButton.Location = new System.Drawing.Point(515, 399);
+            this.LaunchButton.Location = new System.Drawing.Point(515, 385);
             this.LaunchButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.LaunchButton.Name = "LaunchButton";
             this.LaunchButton.Size = new System.Drawing.Size(200, 53);
@@ -149,7 +147,7 @@
             this.Watermark.CheckState = System.Windows.Forms.CheckState.Checked;
             this.Watermark.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Watermark.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.Watermark.Location = new System.Drawing.Point(9, 53);
+            this.Watermark.Location = new System.Drawing.Point(6, 22);
             this.Watermark.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Watermark.Name = "Watermark";
             this.Watermark.Size = new System.Drawing.Size(103, 17);
@@ -161,7 +159,7 @@
             // 
             this.Logo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Logo.Image = ((System.Drawing.Image)(resources.GetObject("Logo.Image")));
-            this.Logo.Location = new System.Drawing.Point(365, 25);
+            this.Logo.Location = new System.Drawing.Point(365, 39);
             this.Logo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Logo.Name = "Logo";
             this.Logo.Size = new System.Drawing.Size(500, 175);
@@ -180,6 +178,7 @@
             this.Address.PlaceholderText = "Server Address";
             this.Address.Size = new System.Drawing.Size(91, 23);
             this.Address.TabIndex = 16;
+            this.Address.Text = "127.0.0.1";
             // 
             // GamePath
             // 
@@ -194,7 +193,7 @@
             // 
             // AddLaunchArgs
             // 
-            this.AddLaunchArgs.Location = new System.Drawing.Point(515, 339);
+            this.AddLaunchArgs.Location = new System.Drawing.Point(515, 325);
             this.AddLaunchArgs.Name = "AddLaunchArgs";
             this.AddLaunchArgs.PlaceholderText = "Additional Launch Args";
             this.AddLaunchArgs.Size = new System.Drawing.Size(200, 23);
@@ -206,25 +205,13 @@
             this.Online.AutoSize = true;
             this.Online.BackColor = System.Drawing.SystemColors.Menu;
             this.Online.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.Online.Location = new System.Drawing.Point(9, 76);
+            this.Online.Location = new System.Drawing.Point(6, 45);
             this.Online.Name = "Online";
             this.Online.Size = new System.Drawing.Size(86, 19);
             this.Online.TabIndex = 20;
             this.Online.Text = "Play Online";
             this.Online.UseVisualStyleBackColor = false;
             this.Online.CheckedChanged += new System.EventHandler(this.Online_Changed);
-            // 
-            // RenderingEngine
-            // 
-            this.RenderingEngine.FormattingEnabled = true;
-            this.RenderingEngine.Items.AddRange(new object[] {
-            "Default",
-            "Vulkan",
-            "Force DirectX11"});
-            this.RenderingEngine.Location = new System.Drawing.Point(9, 24);
-            this.RenderingEngine.Name = "RenderingEngine";
-            this.RenderingEngine.Size = new System.Drawing.Size(103, 23);
-            this.RenderingEngine.TabIndex = 21;
             // 
             // SelectedServerList
             // 
@@ -243,7 +230,7 @@
             this.LaunchServer.BackColor = System.Drawing.SystemColors.Window;
             this.LaunchServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.LaunchServer.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.LaunchServer.Location = new System.Drawing.Point(515, 368);
+            this.LaunchServer.Location = new System.Drawing.Point(515, 354);
             this.LaunchServer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.LaunchServer.Name = "LaunchServer";
             this.LaunchServer.Size = new System.Drawing.Size(200, 25);
@@ -255,12 +242,11 @@
             // LaunchOptionsGroup
             // 
             this.LaunchOptionsGroup.Controls.Add(this.Cosmetics);
-            this.LaunchOptionsGroup.Controls.Add(this.RenderingEngine);
             this.LaunchOptionsGroup.Controls.Add(this.Watermark);
             this.LaunchOptionsGroup.Controls.Add(this.Online);
-            this.LaunchOptionsGroup.Location = new System.Drawing.Point(497, 206);
+            this.LaunchOptionsGroup.Location = new System.Drawing.Point(497, 220);
             this.LaunchOptionsGroup.Name = "LaunchOptionsGroup";
-            this.LaunchOptionsGroup.Size = new System.Drawing.Size(121, 128);
+            this.LaunchOptionsGroup.Size = new System.Drawing.Size(121, 97);
             this.LaunchOptionsGroup.TabIndex = 24;
             this.LaunchOptionsGroup.TabStop = false;
             this.LaunchOptionsGroup.Text = "Game Options";
@@ -270,7 +256,7 @@
             this.Cosmetics.AutoSize = true;
             this.Cosmetics.Checked = true;
             this.Cosmetics.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.Cosmetics.Location = new System.Drawing.Point(9, 101);
+            this.Cosmetics.Location = new System.Drawing.Point(6, 70);
             this.Cosmetics.Name = "Cosmetics";
             this.Cosmetics.Size = new System.Drawing.Size(81, 19);
             this.Cosmetics.TabIndex = 22;
@@ -282,9 +268,9 @@
             // 
             this.OnlineOptionsGroup.Controls.Add(this.Address);
             this.OnlineOptionsGroup.Controls.Add(this.Username);
-            this.OnlineOptionsGroup.Location = new System.Drawing.Point(624, 206);
+            this.OnlineOptionsGroup.Location = new System.Drawing.Point(624, 220);
             this.OnlineOptionsGroup.Name = "OnlineOptionsGroup";
-            this.OnlineOptionsGroup.Size = new System.Drawing.Size(106, 128);
+            this.OnlineOptionsGroup.Size = new System.Drawing.Size(106, 97);
             this.OnlineOptionsGroup.TabIndex = 25;
             this.OnlineOptionsGroup.TabStop = false;
             this.OnlineOptionsGroup.Text = "Online Options";
@@ -299,23 +285,12 @@
             this.SettingsButton.UseVisualStyleBackColor = true;
             this.SettingsButton.Click += new System.EventHandler(this.OpenSettings);
             // 
-            // SkateOnlineDiscord
-            // 
-            this.SkateOnlineDiscord.AutoSize = true;
-            this.SkateOnlineDiscord.Location = new System.Drawing.Point(808, 479);
-            this.SkateOnlineDiscord.Name = "SkateOnlineDiscord";
-            this.SkateOnlineDiscord.Size = new System.Drawing.Size(112, 15);
-            this.SkateOnlineDiscord.TabIndex = 27;
-            this.SkateOnlineDiscord.TabStop = true;
-            this.SkateOnlineDiscord.Text = "skate.online discord";
-            // 
             // Launcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
             this.ClientSize = new System.Drawing.Size(933, 519);
-            this.Controls.Add(this.SkateOnlineDiscord);
             this.Controls.Add(this.SettingsButton);
             this.Controls.Add(this.OnlineOptionsGroup);
             this.Controls.Add(this.LaunchOptionsGroup);
@@ -364,13 +339,11 @@
         private TextBox GamePath;
         private TextBox AddLaunchArgs;
         private CheckBox Online;
-        private ComboBox RenderingEngine;
         private ComboBox SelectedServerList;
         private Button LaunchServer;
         private GroupBox LaunchOptionsGroup;
         private GroupBox OnlineOptionsGroup;
         private Button SettingsButton;
         private CheckBox Cosmetics;
-        private LinkLabel SkateOnlineDiscord;
     }
 }
